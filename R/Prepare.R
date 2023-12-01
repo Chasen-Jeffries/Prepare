@@ -70,22 +70,22 @@ WB_Clean <- function(dataset, drop_na = FALSE, make_wide = FALSE, var_name = NUL
     colnames(dataset)[colnames(dataset) == "Country Name"] <- "Country"
   }
 
-  # Melt the dataset to long format if make_wide is FALSE
-  if (!make_wide) {
-    clean_dataset <- dataset %>%
+  clean_dataset <- dataset
+
+  # Transform column to Long
+  clean_dataset <- clean_dataset %>%
       tidyr::pivot_longer(
         cols = -c("Country", "Variable"),  # Select all columns except 'Country' and 'Variable'
         names_to = "Year",             # Name of the new key column
         values_to = "Values"           # Name of the new value column
       )
-    clean_dataset$Year <- as.integer(clean_dataset$Year)
-
+  clean_dataset$Year <- as.integer(clean_dataset$Year)
 
     # Determine the new column name
-    if (!is.null(var_name)) {
+  if (!is.null(var_name)) {
       # Use user-provided column name
       col_name <- var_name
-    } else {
+  } else {
       # Check if 'Variable' has exactly one unique value
       unique_var <- unique(clean_dataset$Variable)
       if (length(unique_var) == 1) {
@@ -94,24 +94,28 @@ WB_Clean <- function(dataset, drop_na = FALSE, make_wide = FALSE, var_name = NUL
         warning("Multiple unique 'Variable' values found. 'Values' column not renamed.")
         col_name <- "Values"
       }
-    }
-    # Rename the 'Values' column and optionally drop the 'Variable' column
+  }
+    # Rename the 'Values' column and drop the 'Variable' column
     colnames(clean_dataset)[colnames(clean_dataset) == "Values"] <- col_name
     clean_dataset <- clean_dataset %>% dplyr::select(-Variable)
 
-    # Drop rows with NA values if drop_na is TRUE
-    if (drop_na) {
-      if (nrow(clean_dataset) == 0) {
-        warning("The DataFrame is empty. Skipping drop_na operation.")
-      } else {
-        clean_dataset <- clean_dataset %>% tidyr::drop_na()
-      }
+  # Drop rows with NA values if drop_na is TRUE
+  if (drop_na) {
+    if (nrow(clean_dataset) == 0) {
+      warning("The DataFrame is empty. Skipping drop_na operation.")
+    } else {
+      clean_dataset <- clean_dataset %>% tidyr::drop_na()
     }
-
-  } else {
-    clean_dataset <- dataset
   }
 
+    # Pivot the DataFrame to wide format if make_wide is TRUE
+    if (make_wide) {
+      clean_dataset <- clean_dataset %>%
+        tidyr::pivot_wider(
+          names_from = Year,
+          values_from = col_name
+        )
+    }
 
 
   return(clean_dataset)
