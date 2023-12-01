@@ -99,18 +99,20 @@ WB_Clean <- function(dataset, drop_na = FALSE, make_wide = FALSE, var_name = NUL
     colnames(clean_dataset)[colnames(clean_dataset) == "Values"] <- col_name
     clean_dataset <- clean_dataset %>% dplyr::select(-Variable)
 
+    # Drop rows with NA values if drop_na is TRUE
+    if (drop_na) {
+      if (nrow(clean_dataset) == 0) {
+        warning("The DataFrame is empty. Skipping drop_na operation.")
+      } else {
+        clean_dataset <- clean_dataset %>% tidyr::drop_na()
+      }
+    }
+
   } else {
     clean_dataset <- dataset
   }
 
-  # Drop rows with NA values if drop_na is TRUE
-  if (drop_na) {
-    if (nrow(clean_dataset) == 0) {
-      warning("The DataFrame is empty. Skipping drop_na operation.")
-    } else {
-      clean_dataset <- clean_dataset %>% tidyr::drop_na()
-    }
-  }
+
 
   return(clean_dataset)
 }
@@ -163,15 +165,6 @@ UN_Clean <- function(dataset, drop_na = FALSE, make_wide = FALSE) {
   clean_dataset$Country <- gsub(" ", "_", clean_dataset$Country)
   clean_dataset$Country <- gsub(",", "", clean_dataset$Country)
 
-  # Pivot the DataFrame to wide format if make_wide is TRUE
-  if (make_wide) {
-    clean_dataset <- clean_dataset %>%
-      tidyr::pivot_wider(
-        names_from = Year,
-        values_from = Value
-      )
-  }
-
   # Drop rows with NA values if drop_na is TRUE
   if (drop_na) {
     if (nrow(clean_dataset) == 0) {
@@ -179,6 +172,15 @@ UN_Clean <- function(dataset, drop_na = FALSE, make_wide = FALSE) {
     } else {
       clean_dataset <- clean_dataset %>% tidyr::drop_na()
     }
+  }
+
+  # Pivot the DataFrame to wide format if make_wide is TRUE
+  if (make_wide) {
+    clean_dataset <- clean_dataset %>%
+      tidyr::pivot_wider(
+        names_from = Year,
+        values_from = Value
+      )
   }
 
   return(clean_dataset)

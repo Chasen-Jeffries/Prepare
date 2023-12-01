@@ -1,14 +1,14 @@
 Package: Prepare
 Type: Package
 Title: Streamlines Data Cleaning for Various Public Datasets that have unique data formatting
-Version: 1.0.0
+Version: 1.1.0
 Author: Chasen Jeffries
 Maintainer: Chasen Jeffries <chasen.jeffries@cgu.edu>
 Description: This package provides functions to streamline the data cleaning process 
     for various public datasets, especially those with unique formatting challenges. 
     It includes specialized functions for handling data from sources like the World Bank 
     and United Nations, offering options for reshaping, cleaning, and preparing data for analysis.
-License: MIT
+License: MIT + file LICENSE
 URL: https://github.com/Chasen-Jeffries/Prepare
 Encoding: UTF-8
 LazyData: true
