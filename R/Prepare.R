@@ -23,8 +23,7 @@ Prepare <- function(df, source, drop_na = FALSE, make_wide = FALSE, var_name = N
   } else {
     stop("That data source appears to be unsupported.
          Double check that you entered the source name correctly.
-         Otherwise, check our package page to note possible solutions.
-         Thank you!")
+         Otherwise, check our package page to note possible solutions.")
   }
 
   return(clean_data)
@@ -53,21 +52,33 @@ WB_Clean <- function(dataset, drop_na = FALSE, make_wide = FALSE, var_name = NUL
   if (!("Country" %in% colnames(dataset)) || !("Country Name" %in% colnames(dataset))) {
     colnames(dataset) <- as.character(unlist(dataset[4, ]))
     dataset <- dataset[-c(1:4), ]
+  } else {
+    # Error message if the columns are not found
+    stop("Error: initial data structure appears different from expectations.")
   }
 
   # Drop 'Country Code' and 'Indicator Code' columns if they exist
   if ("Country Code" %in% colnames(dataset)) {
     dataset <- dataset %>% dplyr::select(-c("Country Code", "Indicator Code"))
+  } else {
+    # Error message if the columns are not found
+    stop("Error: expected column name 'Country Code' not found.")
   }
 
   # Rename 'Indicator Name' to 'Variable' if it exists
   if ("Indicator Name" %in% colnames(dataset)) {
     colnames(dataset)[colnames(dataset) == "Indicator Name"] <- "Variable"
+  } else {
+    # Error message if the columns are not found
+    stop("Error: expected column name 'Indicator Name' not found.")
   }
 
   # Rename 'Country Name' to 'Country' if it exists
   if ("Country Name" %in% colnames(dataset)) {
     colnames(dataset)[colnames(dataset) == "Country Name"] <- "Country"
+  } else {
+    # Error message if the columns are not found
+    stop("Error: expected column name 'Country Name' not found.")
   }
 
   clean_dataset <- dataset
@@ -143,6 +154,9 @@ UN_Clean <- function(dataset, drop_na = FALSE, make_wide = FALSE) {
   if (!"Country" %in% colnames(dataset)) {
     colnames(dataset) <- as.character(unlist(dataset[2, ]))
     dataset <- dataset[-c(1), ]
+  } else {
+    # Error message if the columns are not found
+    stop("Error: initial data structure appears different from expectations.")
   }
 
   # Drop the first column and keep only the first five columns
@@ -189,4 +203,4 @@ UN_Clean <- function(dataset, drop_na = FALSE, make_wide = FALSE) {
   return(clean_dataset)
 }
 
-
+un_data <- Prepare(united_nations_example, source = "un1", drop_na = TRUE)
