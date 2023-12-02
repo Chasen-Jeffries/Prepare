@@ -46,7 +46,10 @@ UN_Clean(dataset, drop_na, make_wide): Function to clean United Nations data.
 - Additional options:
 1. make_wide: transform the dataset from long to wide
 2. drop_na: drops NA values  
-3. var_name: changes the value column name in a long format. 
+3. var_name: changes the value column name in a long format.
+
+Note: using both drop_na and make_wide on the UN dataset can still result in NA values where variables are included in some years but not others. The years where the variable is not included become NAs. 
+
 
 ## Getting Help
 If you encounter a clear bug, please file a minimal reproducible example on GitHub issues.

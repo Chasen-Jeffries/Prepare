@@ -117,7 +117,6 @@ WB_Clean <- function(dataset, drop_na = FALSE, make_wide = FALSE, var_name = NUL
         )
     }
 
-
   return(clean_dataset)
 }
 
@@ -189,4 +188,5 @@ UN_Clean <- function(dataset, drop_na = FALSE, make_wide = FALSE) {
 
   return(clean_dataset)
 }
+
 
