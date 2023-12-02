@@ -1,4 +1,4 @@
-#' Prepare Dataset
+#' Prepare
 #'
 #' This function prepares datasets from specified sources for analysis.
 #'
@@ -11,7 +11,8 @@
 #' @import dplyr
 #' @export
 #' @examples
-#' prepared_data <- Prepare(world_bank_example, source = 'wb')
+#' prepared_wb_data <- Prepare(world_bank_example, source = 'wb')
+#' prepared_un_data <- Prepare(united_nations_example, source = 'un')
 
 Prepare <- function(df, source, drop_na = FALSE, make_wide = FALSE, var_name = NULL) {
   source <- tolower(source)
@@ -57,7 +58,7 @@ WB_Clean <- function(dataset, drop_na = FALSE, make_wide = FALSE, var_name = NUL
     stop("Error: initial data structure appears different from expectations.")
   }
 
-  # Drop 'Country Code' and 'Indicator Code' columns if they exist
+  # Drop 'Country Code' columns if they exist
   if ("Country Code" %in% colnames(dataset)) {
     dataset <- dataset %>% dplyr::select(-c("Country Code", "Indicator Code"))
   } else {
@@ -203,4 +204,3 @@ UN_Clean <- function(dataset, drop_na = FALSE, make_wide = FALSE) {
   return(clean_dataset)
 }
 
-un_data <- Prepare(united_nations_example, source = "un1", drop_na = TRUE)

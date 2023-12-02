@@ -2,7 +2,7 @@
 % Please edit documentation in R/Prepare.R
 \name{Prepare}
 \alias{Prepare}
-\title{Prepare Dataset}
+\title{Prepare}
 \usage{
 Prepare(df, source, drop_na = FALSE, make_wide = FALSE, var_name = NULL)
 }
@@ -24,5 +24,6 @@ A cleaned and optionally transformed DataFrame.
 This function prepares datasets from specified sources for analysis.
 }
 \examples{
-prepared_data <- Prepare(world_bank_example, source = 'wb')
+prepared_wb_data <- Prepare(world_bank_example, source = 'wb')
+prepared_un_data <- Prepare(united_nations_example, source = 'un')
 }
