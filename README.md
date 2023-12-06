@@ -30,7 +30,7 @@ devtools::install_github("Chasen-Jeffries/Prepare")
 Here's a quick example of how to use the Prepare package:
 
 ```r
-Copy code
+# Load Package
 library(Prepare)
 # Load a sample dataset (replace this with an actual dataset)
 data(world_bank_example)
@@ -80,11 +80,6 @@ This function is specifically designed for cleaning datasets from the United Nat
 1. **make_wide**: A logical argument. If set to `TRUE`, it transforms the dataset from long format to wide format.
 2. **drop_na**: A logical argument. When `TRUE`, it drops all rows with NA values.
 3. **var_name**: An optional argument to specify a new name for the value column in a long format dataset.
-
-#### Note
-
-When using both **drop_na** and **make_wide** on the United Nations dataset, it is possible to still encounter NA values. This can happen in cases where certain variables are included in some years but not in others, resulting in NAs for the years where the variable is not included.
-
 
 ## Getting Help
 
