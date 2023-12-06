@@ -41,28 +41,49 @@ cleaned_data <- Prepare(world_bank_example, source = 'wb')
 
 ## Features
 
-`Prepare(df, source)`: Main function to clean and prepare datasets. 
-- Requires specifying a dataframe (df) and a source (currently supports 'wb' for World Bank and 'un' for United Nations).
-Additional options:
-1. **make_wide**: transform the dataset from long to wide
-2. **drop_na**: drops NA values  
-3. **var_name**: changes the value column name in a long format. 
+### `Prepare(df, source)`: Core Function for Data Cleaning and Preparation
 
-`WB_Clean(dataset)`: Function to clean World Bank data. 
-- Only requires the dataset 
-Additional options:
-1. **make_wide**: transform the dataset from long to wide
-2. **drop_na**: drops NA values  
-3. **var_name**: changes the value column name in a long format. 
+The `Prepare` function is essential for cleaning and preparing datasets. It requires two main arguments:
 
-`UN_Clean(dataset)`: Function to clean United Nations data. 
-- Only requires the dataset.
-Additional options:
-1. **make_wide**: transform the dataset from long to wide
-2. **drop_na**: drops NA values  
-3. **var_name**: changes the value column name in a long format.
+- **Required Argument**:
+  - `df`: The DataFrame to be cleaned.
+  - `source`: The source of the data. Currently, it supports 'wb' (World Bank) and 'un' (United Nations).
 
-Note: using both **drop_na** and **make_wide** on the UN dataset can still result in NA values where variables are included in some years but not others. The years where the variable is not included become NAs. 
+#### Additional Options:
+
+1. **make_wide**: A logical argument. If set to `TRUE`, it transforms the dataset from long format to wide format.
+2. **drop_na**: A logical argument. When `TRUE`, it drops all rows with NA values.
+3. **var_name**: An optional argument to specify a new name for the value column in a long format dataset.
+
+### `WB_Clean(dataset)`: Function for Cleaning World Bank Data
+
+This function is tailored for cleaning datasets obtained from the World Bank.
+
+- **Required Argument**:
+  - `dataset`: The World Bank dataset to be cleaned.
+
+#### Additional Options:
+
+1. **make_wide**: A logical argument. If set to `TRUE`, it transforms the dataset from long format to wide format.
+2. **drop_na**: A logical argument. When `TRUE`, it drops all rows with NA values.
+3. **var_name**: An optional argument to specify a new name for the value column in a long format dataset.
+
+### `UN_Clean(dataset)`: Function for Cleaning United Nations Data
+
+This function is specifically designed for cleaning datasets from the United Nations.
+
+- **Required Argument**:
+  - `dataset`: The United Nations dataset to be cleaned.
+
+#### Additional Options:
+
+1. **make_wide**: A logical argument. If set to `TRUE`, it transforms the dataset from long format to wide format.
+2. **drop_na**: A logical argument. When `TRUE`, it drops all rows with NA values.
+3. **var_name**: An optional argument to specify a new name for the value column in a long format dataset.
+
+#### Note
+
+When using both **drop_na** and **make_wide** on the United Nations dataset, it is possible to still encounter NA values. This can happen in cases where certain variables are included in some years but not in others, resulting in NAs for the years where the variable is not included.
 
 
 ## Getting Help
