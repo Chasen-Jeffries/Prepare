@@ -127,6 +127,16 @@ WB_Clean <- function(dataset, drop_na = FALSE, make_wide = FALSE, var_name = NUL
           names_from = Year,
           values_from = col_name
         )
+
+      # Drop rows with NA values if drop_na is TRUE
+      if (drop_na) {
+        if (nrow(clean_dataset) == 0) {
+          warning("The DataFrame is empty. Skipping drop_na operation.")
+        } else {
+          clean_dataset <- clean_dataset %>% tidyr::drop_na()
+        }
+      }
+
     }
 
   return(clean_dataset)
@@ -199,6 +209,15 @@ UN_Clean <- function(dataset, drop_na = FALSE, make_wide = FALSE) {
         names_from = Year,
         values_from = Value
       )
+
+    # Drop rows with NA values if drop_na is TRUE
+    if (drop_na) {
+      if (nrow(clean_dataset) == 0) {
+        warning("The DataFrame is empty. Skipping drop_na operation.")
+      } else {
+        clean_dataset <- clean_dataset %>% tidyr::drop_na()
+      }
+    }
   }
 
   return(clean_dataset)

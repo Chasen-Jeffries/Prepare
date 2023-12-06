@@ -1,7 +1,7 @@
 Package: Prepare
 Type: Package
 Title: Streamlines Data Cleaning for Various Public Datasets that have unique data formatting
-Version: 1.1.0
+Version: 1.1.1
 Author: Chasen Jeffries
 Maintainer: Chasen Jeffries <chasen.jeffries@cgu.edu>
 Description: This package provides functions to streamline the data cleaning process 
