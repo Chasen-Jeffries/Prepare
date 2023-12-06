@@ -41,23 +41,23 @@ cleaned_data <- Prepare(world_bank_example, source = 'wb')
 
 ## Features
 
-**Prepare(df, source)**: Main function to clean and prepare datasets. 
+`Prepare(df, source)`: Main function to clean and prepare datasets. 
 - Requires specifying a dataframe (df) and a source (currently supports 'wb' for World Bank and 'un' for United Nations).
-- Additional options:
+Additional options:
 1. **make_wide**: transform the dataset from long to wide
 2. **drop_na**: drops NA values  
 3. **var_name**: changes the value column name in a long format. 
 
-**WB_Clean(dataset)**: Function to clean World Bank data. 
+`WB_Clean(dataset)`: Function to clean World Bank data. 
 - Only requires the dataset 
-- Additional options:
+Additional options:
 1. **make_wide**: transform the dataset from long to wide
 2. **drop_na**: drops NA values  
 3. **var_name**: changes the value column name in a long format. 
 
-**UN_Clean(dataset)**: Function to clean United Nations data. 
+`UN_Clean(dataset)`: Function to clean United Nations data. 
 - Only requires the dataset.
-- Additional options:
+Additional options:
 1. **make_wide**: transform the dataset from long to wide
 2. **drop_na**: drops NA values  
 3. **var_name**: changes the value column name in a long format.
