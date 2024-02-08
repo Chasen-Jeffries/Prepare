@@ -4,7 +4,7 @@
 
 **Prepare**: An R Package for Streamlined Data Cleaning
 
-The `Prepare` package is specifically designed to address the unique challenges of cleaning and preparing data from various public datasets. With an initial focus on data from the World Bank and the United Nations, this package simplifies the process of transforming raw data into a format that's ready for analysis. This includes capabilities such as reshaping datasets, handling missing values, standardizing naming conventions, and more. It transforms what previously required dozens of lines of code into a single command.
+The `Prepare` package is specifically designed to address the unique challenges of cleaning and preparing data from various public datasets. It transforms what previously required dozens of lines of code into a single command. With an initial focus on data from the World Bank and the United Nations, this package simplifies the process of transforming raw data into a format that's ready for analysis. This includes capabilities such as reshaping datasets, handling missing values, standardizing naming conventions, and more. 
 
 ### 🔑 Key Features:
 
