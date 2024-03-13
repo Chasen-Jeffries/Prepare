@@ -81,6 +81,21 @@ This function is specifically designed for cleaning datasets from the United Nat
 2. **drop_na**: A logical argument. When `TRUE`, it drops all rows with NA values.
 3. **var_name**: An optional argument to specify a new name for the value column in a long format dataset.
 
+### `std_country(df, column_name)`: Function for Standardizing Country Names
+
+This function standardizes country names within a dataframe to their ISO 3-letter codes, improving consistency and comparability across datasets.
+
+**Required Argument**:
+- `df`: The dataframe containing the country names or codes to be standardized.
+- `column_name`: The name of the column that contains the country names or codes.
+
+#### Usage Example:
+
+```r
+# Standardize country names in a dataset
+standardized_df <- std_country(dataset, "country_column")
+```
+
 ## ❓Getting Help
 - 🐞 **Bugs**: File a reproducible example on GitHub issues.
 - 💬 **Discussions**: Contact the package maintainer.
