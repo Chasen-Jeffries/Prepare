@@ -223,3 +223,33 @@ UN_Clean <- function(dataset, drop_na = FALSE, make_wide = FALSE) {
   return(clean_dataset)
 }
 
+#' Standardize Country Names
+#'
+#' This function standardizes the names of countries in a given column of a dataframe
+#' using the `countrycode` package. It maps country names or codes to their standardized
+#' ISO 3-letter codes, removes the original country column, and renames the new column to "Country".
+#' column replaced by a standardized "Country" column. Rows with countries that cannot be converted will be removed.
+#'
+#' @param df A dataframe containing a column with country names or codes.
+#' @param column_name The name of the column in `df` that contains the country names or codes to be standardized.
+#' @return A dataframe with the specified country column replaced by a standardized "Country" column.
+#' @import dplyr
+#' @importFrom countrycode countrycode
+#' @export
+#' @examples
+#' data <- data.frame(country = c("USA", "France", "GBR"))
+#' standardized_data <- std_country(data, "country")
+
+std_country <- function(df, column_name) {
+  # Ensure the column_name exists in the dataframe
+  if(!column_name %in% names(df)) {
+    stop("Column name provided does not exist in the data frame")
+  }
+
+  # Standardize country names, filter out NA, remove the original country column, and rename the new column
+  df %>%
+    mutate(Standardized_Country = countrycode(!!sym(column_name), "country.name", "iso3c")) %>%
+    filter(!is.na(Standardized_Country)) %>%
+    select(-!!sym(column_name)) %>%
+    rename(Country = Standardized_Country)
+}

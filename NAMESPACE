@@ -3,4 +3,6 @@
 export(Prepare)
 export(UN_Clean)
 export(WB_Clean)
+export(std_country)
 import(dplyr)
+importFrom(countrycode,countrycode)
