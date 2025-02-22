@@ -1,3 +1,7 @@
+# Declare global variables to prevent R CMD check warnings
+utils::globalVariables(c("Year", "Value", "Variable", "Standardized_Country"))
+
+
 #' Prepare
 #'
 #' This function prepares datasets from specified sources for analysis.
